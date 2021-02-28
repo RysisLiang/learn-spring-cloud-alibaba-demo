@@ -1,0 +1,52 @@
+spring:
+  datasource:
+    username: root
+    password: root
+    # 低版本driver使用
+    driver-class-name: com.mysql.jdbc.Driver
+    # driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3307/local-test?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf8&useSSL=false
+    druid:
+      # 初始化、最小、最大
+      initial-size: 1
+      min-idle: 1
+      max-active: 20
+      # 配置获取连接等待超时的时间，单位毫秒，缺省启用公平锁，并发效率会有所下降
+      max-wait: 60000
+      # 配置间隔多久才进行一次检测，检测需要关闭的空闲连接，单位是毫秒
+      time-between-eviction-runs-millis: 2000
+      # 配置一个连接在池中最小/最大生存的时间，单位是毫秒
+      min-evictable-idle-time-millis: 300000
+      max-evictable-idle-time-millis: 900000
+      # 用来检测连接是否有效的sql，要求是一个查询语句。如果validationQuery为null，testOnBorrow、testOnReturn、testWhileIdle都不会起作用
+      validationQuery: SELECT 1 FROM DUAL
+      # 建议配置为true，不影响性能，并且保证安全性。
+      # 申请连接的时候检测，如果空闲时间大于timeBetweenEvictionRunsMillis，执行validationQuery检测连接是否有效。
+      test-while-idle: true
+      # 申请连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-borrow: false
+      # 归还连接时执行validationQuery检测连接是否有效，做了这个配置会降低性能
+      test-on-return: false
+      # 打开PSCache，并且指定每个连接上PSCache的大小。oracle有效、mysql无效。
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      # 1.1.4中新增加的配置，如果有initialSize数量较多时，打开会加快应用启动时间
+      asyncInit: true
+      # 通过别名的方式配置扩展插件，多个英文逗号分隔，常用的插件有：
+      # 监控统计用的filter: stat
+      # 防御sql注入的filter: wall
+      # 日志用的filter: log4j/slf4j
+      filters: stat,wall,slf4j
+  jpa:
+    # 配置 DBMS 类型
+    database: MYSQL
+    # 配置是否将执行的 SQL 输出到日志
+    show-sql: true
+    # 每次应用启动都如何操作
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        hbm2ddl:
+          # 配置开启自动更新表结构
+          auto: update

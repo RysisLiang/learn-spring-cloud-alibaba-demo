@@ -1,0 +1,29 @@
+# test
+user:
+  name: user-server-name
+  age: 210
+
+
+spring:
+  cloud:
+    sentinel:
+      datasource:
+        ds1:
+          nacos:
+            server-addr: 127.0.0.1:8848
+            namespace: local-test
+            group-id: sentinel:config
+            data-id: ${spring.application.name}-sentinel-rule
+            data-type: json
+            rule-type: flow
+
+# dubbo配置
+dubbo:
+  scan:
+    basePackages: com.example.userserver.service
+
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+  file:
+    path: logs

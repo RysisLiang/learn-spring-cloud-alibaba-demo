@@ -1,0 +1,27 @@
+server:
+  port: 18081
+
+spring:
+  application:
+    name: main-web-server
+  cloud:
+    nacos:
+      # 配置中心配置
+      config:
+        # 设置配置中心服务端地址。端口不能省略
+        server-addr: 127.0.0.1:8848
+        # 配置中心的namespace，默认为 public
+        namespace: local-test
+        # 配置中心的group，默认为 DEFAULT_GROUP
+        group: DEFAULT_GROUP
+        # 指定配置文件的扩展名
+        file-extension: yaml
+        # 共享配置列表
+        shared-configs:
+            - data-id: global.yaml
+              group: DEFAULT_GROUP
+              refresh: true
+    sentinel:
+      transport:
+        port: 8619
+        dashboard: localhost:8050

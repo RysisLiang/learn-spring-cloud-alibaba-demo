@@ -1,0 +1,39 @@
+# 全部微服务的发现注册配置
+spring:
+  cloud:
+    nacos:
+      # 服务发现配置
+      discovery:
+        # 设置服务发现服务端地址。端口不能省略
+        server-addr: 127.0.0.1:8848
+        # 服务发现的namespace，默认为 public
+        namespace: local-test
+        # 服务发现的group，默认为 DEFAULT_GROUP
+        group: DEFAULT_GROUP
+    sentinel:
+      transport:
+        # 控制台地址
+        dashboard: localhost:8050
+
+# dubbo配置
+dubbo:
+  protocol:
+    name: dubbo
+    port: -1
+  registry:
+    #    address: spring-cloud://127.0.0.1 # 这个配置是spring-cloud-dubbo的方法，该组件不成熟
+    # 使用dubbo自身的配置形式
+    address: nacos://127.0.0.1:8848
+    parameters:
+      # nacos名称空间
+      namespace: local-test
+  consumer:
+    check: false
+    loadbalance: roundrobin
+  provider:
+    # 负载均衡
+    loadbalance: roundrobin
+    # 调用超时时间
+    timeout: 5000
+    # 重试次数
+    retries: 0

@@ -1,0 +1,44 @@
+package com.example.userserver.service.impl;
+
+import com.example.common.api.UserService;
+import com.example.common.entity.User;
+import com.example.userserver.dao.UserDao;
+import org.apache.dubbo.config.annotation.DubboService;
+
+import javax.annotation.Resource;
+import java.time.LocalDateTime;
+import java.util.List;
+import java.util.Optional;
+
+/**
+ * UserService
+ *
+ * @author kunda-liang
+ * @version 1.00
+ * @date 2021/2/6 15:08
+ */
+@DubboService(version = "1.0.0")
+public class UserServiceImpl implements UserService {
+
+    @Resource
+    private UserDao userDao;
+
+    @Override
+    public User save(User user) {
+        System.out.println(LocalDateTime.now() + " - 1.0.0 UserServiceImpl.save:name=" + user.getName());
+        return userDao.save(user);
+    }
+
+    @Override
+    public List<User> getAll() {
+        System.out.println(LocalDateTime.now() + " - 1.0.0 UserServiceImpl.getAll");
+        return (List<User>) userDao.findAll();
+    }
+
+    @Override
+    public User findOneById(Long id) {
+        System.out.println(LocalDateTime.now() + " - 1.0.0 UserServiceImpl.findOneById:id=" + id);
+        Optional<User> optional = userDao.findById(id);
+        return optional.orElse(null);
+    }
+}

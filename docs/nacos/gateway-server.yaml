@@ -1,0 +1,25 @@
+server:
+  port: 8081
+
+spring:
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          # 开启服务注册和发现的功能。且自动根据服务发现为每一个服务创建了一个router，将以服务名开头的请求路径转发到对应的服务
+          enabled: true
+          # 是将请求路径上的服务名配置为小写，比如以/service-hi/*的请求路径被路转发到名为service-hi上。
+          lowerCaseServiceId: true
+          # filters:
+          #   - StripPrefix=1
+      routes:
+        # 唯一标识
+        - id: main-web-server-1808*
+          # 转发的地址，写服务名称
+          uri: lb://main-web-server
+          predicates:
+            # 判断匹配条件，即地址带有/ribbon/**的请求，会转发至lb:RIBBON-CONSUMER
+            - Path=/main/**
+          filters:
+            # 去掉Path前缀，参数为1代表去掉/ribbon
+            - StripPrefix=1
