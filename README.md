@@ -84,7 +84,7 @@ sh shutdown.sh
 [官方推荐用法说明](https://dubbo.apache.org/zh/docs/v2.7/user/recommend/)
 
 
-dubbo控制台使用：
+dubbo控制台使用（截止 2021-02 的时候dubbo的控制台还没有对Nacos进行很好的适配，所以功能几乎全废）：
 
 ```bash
 # 下载控制台项目代码
@@ -116,12 +116,14 @@ todo
 
 运行控制台
 ```bash
-java -Dserver.port=8050 -Dcsp.sentinel.dashboard.server=localhost:8050 -Dproject.name=sentinel-dashboard -jar sentinel-dashboard.jar
+java -Dserver.port=8050 -Dcsp.sentinel.dashboard.server=localhost:8050 -jar sentinel-dashboard-1.8.0.jar 
 ```
 
 默认账户：sentinel/sentinel
 
-todo
+##### 与dubbo整合
+
+整合时，注解的转资源的filter实现已经有了，但是降级和熔断后的处理，需要他们自己去处理和实现。尤其是熔断，不会像open-feign和ribbon的那种会自动调用（根据重试规则去重试）其它服务节点。需要我们手动判断异常类型，然后重新抛出dubbo-rpc异常，让dubbo去触发重试的功能。
 
 ---
 
