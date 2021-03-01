@@ -39,6 +39,10 @@ public class UserServiceImpl implements UserService {
     public User findOneById(Long id) {
         System.out.println(LocalDateTime.now() + " - 1.0.0 UserServiceImpl.findOneById:id=" + id);
         Optional<User> optional = userDao.findById(id);
-        return optional.orElse(null);
+        Optional<User> optional1 = optional.map(i -> {
+            i.setAddress("user-server-0");
+            return i;
+        });
+        return optional1.orElse(null);
     }
 }
