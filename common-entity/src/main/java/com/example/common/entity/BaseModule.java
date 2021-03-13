@@ -16,9 +16,15 @@ import java.time.LocalDateTime;
 @MappedSuperclass // 用于表明这是实体类的抽象
 public abstract class BaseModule {
 
+    /**
+     * 数据库主键id
+     */
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    /**
+     * 数据创建时间
+     */
     private LocalDateTime createTime;
 
     public Long getId() {

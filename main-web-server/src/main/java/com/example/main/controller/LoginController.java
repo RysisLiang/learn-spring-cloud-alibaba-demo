@@ -33,17 +33,32 @@ public class LoginController {
         return "ok";
     }
 
+    /**
+     * 注册
+     *
+     * @param id
+     * @return
+     */
     @PostMapping(value = "/sign-up")
     public Object signUp(Long id) {
         System.out.println(LocalDateTime.now() + " - LoginController.signUp:id=" + id);
+        int r = new Random().nextInt(20);
         User user = new User();
-        user.setName("xxx");
-        user.setAge(new Random().nextInt(20));
+        user.setUserName("abc123");
+        user.setPassword("123456");
+        user.setName("李雷" + r);
+        user.setAge(r);
+        user.setAddress("测试数据地址" + r);
         user.setCreateTime(LocalDateTime.now());
-        user.setAddress("测试数据地址");
         return loginService.signUp(user);
     }
 
+    /**
+     * 登录
+     *
+     * @param id
+     * @return
+     */
     @GetMapping(value = "/sign-in")
     public Object signIn(Long id) {
         System.out.println(LocalDateTime.now() + " - LoginController.signIn:id=" + id);

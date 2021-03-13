@@ -16,15 +16,33 @@ import java.io.Serializable;
 @Table(name = "t_user")
 public class User extends BaseModule implements Serializable {
 
+    /**
+     * 账户名称
+     */
+    private String userName;
+    /**
+     * 账户密码
+     */
+    private String password;
+    /**
+     * 用户姓名
+     */
     private String name;
+    /**
+     * 用户年龄
+     */
     private int age;
+    /**
+     * 用户地址
+     */
     private String address;
 
     public User() {
     }
 
-    public User(Long id, String name, int age, String address) {
-        super.setId(id);
+    public User(String userName, String password, String name, int age, String address) {
+        this.userName = userName;
+        this.password = password;
         this.name = name;
         this.age = age;
         this.address = address;
@@ -33,10 +51,28 @@ public class User extends BaseModule implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "userName='" + userName + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
                 '}';
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getName() {
