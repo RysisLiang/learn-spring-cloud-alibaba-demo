@@ -9,14 +9,14 @@ import java.util.List;
 import java.util.Optional;
 
 /**
- * LoginService
+ * TestService
  *
  * @author kunda-liang
  * @version 1.00
  * @date 2021/2/5 15:14
  */
 @Service
-public class LoginService {
+public class TestService {
 
     @DubboReference(loadbalance = "roundrobin", version = "1.0.0")
     private UserService userService;
@@ -33,13 +33,14 @@ public class LoginService {
     }
 
     /**
-     * 根据用户id查询用户
+     * 登录
      *
-     * @param id
+     * @param userName 用户名称
+     * @param password 密码
      * @return
      */
-    public Optional<User> signIn(Long id) {
-        User user = userService.findOneById(id);
+    public Optional<User> signIn(String userName, String password) {
+        User user = userService.findOneByNameAndPwd(userName, password);
         return Optional.ofNullable(user);
     }
 
@@ -56,5 +57,16 @@ public class LoginService {
             e.printStackTrace();
         }
         return all;
+    }
+
+    /**
+     * 根据id查询用户信息
+     *
+     * @param id 用户id
+     * @return
+     */
+    public Optional<User> findById(Long id) {
+        User user = userService.findOneById(id);
+        return Optional.ofNullable(user);
     }
 }

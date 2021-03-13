@@ -45,4 +45,15 @@ public class UserServiceImpl implements UserService {
         });
         return optional1.orElse(null);
     }
+
+    @Override
+    public User findOneByNameAndPwd(String userName, String pwd) {
+        System.out.println(LocalDateTime.now() + " - 1.0.0 UserServiceImpl.findOneById:userName=" + userName);
+        Optional<User> optional = userDao.findOneByNameAndPwd(userName, pwd);
+        Optional<User> optional1 = optional.map(i -> {
+            i.setAddress("user-server-0");
+            return i;
+        });
+        return optional1.orElse(null);
+    }
 }

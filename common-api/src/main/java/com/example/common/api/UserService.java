@@ -12,4 +12,13 @@ import com.example.common.entity.User;
  */
 public interface UserService extends CRUDService<User> {
 
+    /**
+     * 根据用户名和密码查询账户信息
+     *
+     * @param userName 用户名
+     * @param pwd 密码
+     * @return
+     */
+    User findOneByNameAndPwd(String userName, String pwd);
+
 }
