@@ -40,7 +40,7 @@ public class TestService {
      * @return
      */
     public Optional<User> signIn(String userName, String password) {
-        User user = userService.findOneByNameAndPwd(userName, password);
+        User user = userService.findOneByUsernameAndPwd(userName, password);
         return Optional.ofNullable(user);
     }
 

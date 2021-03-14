@@ -20,12 +20,12 @@ public interface UserDao extends CrudRepository<User, Long> {
     /**
      * 根据用户名和密码查询
      *
-     * @param userName 用户名
+     * @param username 用户名
      * @param pwd 密码
      * @return
      */
-    @Query(value = "from User where userName=:userName and password=:pwd")
-    Optional<User> findOneByNameAndPwd(String userName, String pwd);
+    @Query(value = "from User where username=:username and password=:pwd")
+    Optional<User> findOneByUsernameAndPwd(String username, String pwd);
 
 
 }

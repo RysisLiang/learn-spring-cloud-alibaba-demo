@@ -47,9 +47,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User findOneByNameAndPwd(String userName, String pwd) {
-        System.out.println(LocalDateTime.now() + " - 1.0.0 UserServiceImpl.findOneById:userName=" + userName);
-        Optional<User> optional = userDao.findOneByNameAndPwd(userName, pwd);
+    public User findOneByUsernameAndPwd(String username, String pwd) {
+        System.out.println(LocalDateTime.now() + " - 1.0.0 UserServiceImpl.findOneById:username=" + username);
+        Optional<User> optional = userDao.findOneByUsernameAndPwd(username, pwd);
         Optional<User> optional1 = optional.map(i -> {
             i.setAddress("user-server-0");
             return i;

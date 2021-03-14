@@ -24,10 +24,10 @@ public class TestController {
     private TestService testService;
 
     @GetMapping(value = "/status")
-    public String status() {
+    public Object status() {
         HashMap<String, Object> map = new HashMap<>();
         map.put("status", "ok");
-        return "ok";
+        return map;
     }
 
     /**
@@ -41,7 +41,7 @@ public class TestController {
         System.out.println(LocalDateTime.now() + " - LoginController.signUp:id=" + id);
         int r = new Random().nextInt(20);
         User user = new User();
-        user.setUserName("abc123");
+        user.setUsername("hahaR" + r);
         user.setPassword("123456");
         user.setName("李雷" + r);
         user.setAge(r);

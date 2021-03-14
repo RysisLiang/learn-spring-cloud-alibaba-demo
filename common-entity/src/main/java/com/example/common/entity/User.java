@@ -19,7 +19,7 @@ public class User extends BaseModule implements Serializable {
     /**
      * 账户名称
      */
-    private String userName;
+    private String username;
     /**
      * 账户密码
      */
@@ -40,8 +40,8 @@ public class User extends BaseModule implements Serializable {
     public User() {
     }
 
-    public User(String userName, String password, String name, int age, String address) {
-        this.userName = userName;
+    public User(String username, String password, String name, int age, String address) {
+        this.username = username;
         this.password = password;
         this.name = name;
         this.age = age;
@@ -51,7 +51,7 @@ public class User extends BaseModule implements Serializable {
     @Override
     public String toString() {
         return "User{" +
-                "userName='" + userName + '\'' +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
@@ -59,12 +59,12 @@ public class User extends BaseModule implements Serializable {
                 '}';
     }
 
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName;
+    public void setUsername(String userName) {
+        this.username = userName;
     }
 
     public String getPassword() {
