@@ -1,6 +1,6 @@
 package com.example.main.controller;
 
-import com.example.common.entity.User;
+import com.example.common.entity.Account;
 import com.example.main.service.TestService;
 import org.springframework.web.bind.annotation.*;
 
@@ -40,14 +40,14 @@ public class TestController {
     public Object signUp(Long id) {
         System.out.println(LocalDateTime.now() + " - LoginController.signUp:id=" + id);
         int r = new Random().nextInt(20);
-        User user = new User();
-        user.setUsername("hahaR" + r);
-        user.setPassword("123456");
-        user.setName("李雷" + r);
-        user.setAge(r);
-        user.setAddress("测试数据地址" + r);
-        user.setCreateTime(LocalDateTime.now());
-        return testService.signUp(user);
+        Account account = new Account();
+        account.setUsername("hahaR" + r);
+        account.setPassword("123456");
+        account.setName("李雷" + r);
+        account.setAge(r);
+        account.setAddress("测试数据地址" + r);
+        account.setCreateTime(LocalDateTime.now());
+        return testService.signUp(account);
     }
 
     /**

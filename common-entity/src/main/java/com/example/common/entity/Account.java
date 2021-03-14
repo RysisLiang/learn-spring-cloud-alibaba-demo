@@ -5,7 +5,7 @@ import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
- * User
+ * Account
  * 用户实体类
  *
  * @author kunda-liang
@@ -14,7 +14,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "t_user")
-public class User extends BaseModule implements Serializable {
+public class Account extends BaseModule implements Serializable {
 
     /**
      * 账户名称
@@ -37,10 +37,10 @@ public class User extends BaseModule implements Serializable {
      */
     private String address;
 
-    public User() {
+    public Account() {
     }
 
-    public User(String username, String password, String name, int age, String address) {
+    public Account(String username, String password, String name, int age, String address) {
         this.username = username;
         this.password = password;
         this.name = name;
@@ -50,7 +50,7 @@ public class User extends BaseModule implements Serializable {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "Account{" +
                 "username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", name='" + name + '\'' +

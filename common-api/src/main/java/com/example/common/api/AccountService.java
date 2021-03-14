@@ -1,16 +1,16 @@
 package com.example.common.api;
 
-import com.example.common.entity.User;
+import com.example.common.entity.Account;
 
 /**
- * UserService
+ * AccountService
  * 用于定义用户的服务API
  *
  * @author kunda-liang
  * @version 1.00
  * @date 2021/2/5 14:46
  */
-public interface UserService extends CRUDService<User> {
+public interface AccountService extends CRUDService<Account> {
 
     /**
      * 根据用户名和密码查询账户信息
@@ -19,6 +19,6 @@ public interface UserService extends CRUDService<User> {
      * @param pwd 密码
      * @return
      */
-    User findOneByUsernameAndPwd(String username, String pwd);
+    Account findOneByUsernameAndPwd(String username, String pwd);
 
 }

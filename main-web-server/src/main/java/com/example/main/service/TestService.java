@@ -1,7 +1,7 @@
 package com.example.main.service;
 
-import com.example.common.api.UserService;
-import com.example.common.entity.User;
+import com.example.common.api.AccountService;
+import com.example.common.entity.Account;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
@@ -19,16 +19,16 @@ import java.util.Optional;
 public class TestService {
 
     @DubboReference(loadbalance = "roundrobin", version = "1.0.0")
-    private UserService userService;
+    private AccountService accountService;
 
     /**
      * 注册
      *
-     * @param user
+     * @param account
      * @return
      */
-    public Optional<User> signUp(User user) {
-        User save = userService.save(user);
+    public Optional<Account> signUp(Account account) {
+        Account save = accountService.save(account);
         return Optional.ofNullable(save);
     }
 
@@ -39,9 +39,9 @@ public class TestService {
      * @param password 密码
      * @return
      */
-    public Optional<User> signIn(String userName, String password) {
-        User user = userService.findOneByUsernameAndPwd(userName, password);
-        return Optional.ofNullable(user);
+    public Optional<Account> signIn(String userName, String password) {
+        Account account = accountService.findOneByUsernameAndPwd(userName, password);
+        return Optional.ofNullable(account);
     }
 
     /**
@@ -49,10 +49,10 @@ public class TestService {
      *
      * @return
      */
-    public List<User> findALl() {
-        List<User> all = null;
+    public List<Account> findALl() {
+        List<Account> all = null;
         try {
-            all = userService.getAll();
+            all = accountService.getAll();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,8 +65,8 @@ public class TestService {
      * @param id 用户id
      * @return
      */
-    public Optional<User> findById(Long id) {
-        User user = userService.findOneById(id);
-        return Optional.ofNullable(user);
+    public Optional<Account> findById(Long id) {
+        Account account = accountService.findOneById(id);
+        return Optional.ofNullable(account);
     }
 }
