@@ -32,14 +32,12 @@
         <java.version>1.8</java.version>
         <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
         <spring-cloud.version>Hoxton.SR9</spring-cloud.version>
-        <spring.cloud.alibaba.version>2.2.5.RELEASE</spring.cloud.alibaba.version>
+        <spring-cloud-alibaba.version>2.2.5.RELEASE</spring-cloud-alibaba.version>
         <dubbo.version>2.7.8</dubbo.version>
-        <sentinel.version>1.8.0</sentinel.version>
-        <common.entity.version>0.0.1-SNAPSHOT</common.entity.version>
-        <common.api.version>0.0.1-SNAPSHOT</common.api.version>
-        <spring.context.support.version>1.0.11</spring.context.support.version>
-        <mysql.driver.version>5.1.48</mysql.driver.version>
-        <druid.starter.version>1.2.4</druid.starter.version>
+        <common-entity.version>0.0.1-SNAPSHOT</common-entity.version>
+        <common-api.version>0.0.1-SNAPSHOT</common-api.version>
+        <mysql-driver.version>8.0.21</mysql-driver.version>
+        <druid.version>1.2.4</druid.version>
         <fastjson.version>1.2.75</fastjson.version>
     </properties>
 
@@ -49,12 +47,12 @@
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>common-entity</artifactId>
-                <version>${common.entity.version}</version>
+                <version>${common-entity.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.example</groupId>
                 <artifactId>common-api</artifactId>
-                <version>${common.api.version}</version>
+                <version>${common-api.version}</version>
             </dependency>
 
             <!-- spring-boot组件 -->
@@ -70,7 +68,7 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>${spring-cloud-alibaba.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
@@ -78,17 +76,17 @@
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>${spring-cloud-alibaba.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>${spring-cloud-alibaba.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba.cloud</groupId>
                 <artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-                <version>${spring.cloud.alibaba.version}</version>
+                <version>${spring-cloud-alibaba.version}</version>
             </dependency>
 
             <!-- Apache Dubbo 有问题 -->
@@ -130,23 +128,23 @@
                 <version>${dubbo.version}</version>
             </dependency>
 
-            <!-- sentinel + dubbo -->
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-apache-dubbo-adapter</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-transport-simple-http</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
-            <!-- sentinel + Nacos -->
-            <dependency>
-                <groupId>com.alibaba.csp</groupId>
-                <artifactId>sentinel-datasource-nacos</artifactId>
-                <version>${sentinel.version}</version>
-            </dependency>
+<!--            &lt;!&ndash; sentinel + dubbo &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.csp</groupId>-->
+<!--                <artifactId>sentinel-apache-dubbo-adapter</artifactId>-->
+<!--                <version>${sentinel.version}</version>-->
+<!--            </dependency>-->
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.csp</groupId>-->
+<!--                <artifactId>sentinel-transport-simple-http</artifactId>-->
+<!--                <version>${sentinel.version}</version>-->
+<!--            </dependency>-->
+<!--            &lt;!&ndash; sentinel + Nacos &ndash;&gt;-->
+<!--            <dependency>-->
+<!--                <groupId>com.alibaba.csp</groupId>-->
+<!--                <artifactId>sentinel-datasource-nacos</artifactId>-->
+<!--                <version>${sentinel.version}</version>-->
+<!--            </dependency>-->
 
             <!-- 持久层组件 -->
 
@@ -160,12 +158,12 @@
             <dependency>
                 <groupId>mysql</groupId>
                 <artifactId>mysql-connector-java</artifactId>
-                <version>${mysql.driver.version}</version>
+                <version>${mysql-driver.version}</version>
             </dependency>
             <dependency>
                 <groupId>com.alibaba</groupId>
                 <artifactId>druid-spring-boot-starter</artifactId>
-                <version>${druid.starter.version}</version>
+                <version>${druid.version}</version>
             </dependency>
 
             <dependency>

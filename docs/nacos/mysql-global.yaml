@@ -3,8 +3,8 @@ spring:
     username: root
     password: root
     # 低版本driver使用
-    driver-class-name: com.mysql.jdbc.Driver
-    # driver-class-name: com.mysql.cj.jdbc.Driver
+#    driver-class-name: com.mysql.jdbc.Driver
+    driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3307/local-test?serverTimezone=GMT%2b8&useUnicode=true&characterEncoding=utf8&useSSL=false
     druid:
       # 初始化、最小、最大
