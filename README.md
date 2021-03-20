@@ -54,16 +54,17 @@ Spring Cloud Alibaba Version|Sentinel Version|Nacos Version|RocketMQ Version|Dub
 [官网文档](https://nacos.io/zh-cn/docs/what-is-nacos.html)
 
 ```
-# 1. 下载Nacos-1.4.1.zip
+# 1. 下载nacos-server-1.4.1.zip
 # 2. 解压
-unzip x Nacos-1.4.1.zip 
+unzip x nacos-server-1.4.1.zip 
 # 3. 进入
-cd nacos/bin 
+cd nacos-1.4.1/bin 
 # 4. 启动服务。单点
 sh startup.sh -m standalone
 # 5. 关闭
 sh shutdown.sh
-
+# 控制台
+http://127.0.0.1:8848/nacos
 ```
 
 #### Dubbo
