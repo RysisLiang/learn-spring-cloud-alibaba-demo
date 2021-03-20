@@ -1,8 +1,8 @@
 package com.example.userserver.dao;
 
 import com.example.common.entity.Account;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.Optional;
@@ -15,7 +15,7 @@ import java.util.Optional;
  * @Date 2020/9/8 17:51
  */
 @Repository
-public interface AccountDao extends CrudRepository<Account, Long> {
+public interface AccountDao extends JpaRepository<Account, Long> {
 
     /**
      * 根据用户名和密码查询

@@ -13,8 +13,8 @@ import java.io.Serializable;
  * @date 2021/2/5 14:46
  */
 @Entity
-@Table(name = "t_user")
-public class Account extends BaseModule implements Serializable {
+@Table(name = "t_account")
+public class Account extends BaseModel implements Serializable {
 
     /**
      * 账户名称
