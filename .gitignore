@@ -39,5 +39,4 @@ logs/
 *-logs/
 
 ## test
-main-web-server-*
-user-server-*
+/server/

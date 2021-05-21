@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>user-server-api</module>
+		<module>user-server-app</module>
+	</modules>
+
 	<parent>
 		<groupId>com.example</groupId>
 		<artifactId>spring-cloud-alibaba-demo</artifactId>
@@ -10,133 +17,53 @@
 
 	<artifactId>user-server</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>user-server</name>
-	<description>Demo project for Spring Boot</description>
+	<description>用户服务模块</description>
 
-	<properties>
-		<java.version>1.8</java.version>
-	</properties>
-	<dependencies>
-		<!-- 内部组件 -->
-		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>common-entity</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.example</groupId>
-			<artifactId>common-api</artifactId>
-		</dependency>
+	<dependencyManagement>
+		<dependencies>
+			<!-- 项目基础 pom 文件  -->
+			<dependency>
+				<groupId>com.example</groupId>
+				<artifactId>spring-cloud-alibaba-demo-dependencies</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+				<type>pom</type>
+				<scope>import</scope>
+			</dependency>
 
-		<!-- spring boot -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter</artifactId>
-		</dependency>
-<!--		<dependency>-->
-<!--			<groupId>org.springframework.boot</groupId>-->
-<!--			<artifactId>spring-boot-starter-actuator</artifactId>-->
-<!--		</dependency>-->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-configuration-processor</artifactId>
-			<optional>true</optional>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<exclusions>
-				<exclusion>
-					<groupId>org.junit.vintage</groupId>
-					<artifactId>junit-vintage-engine</artifactId>
-				</exclusion>
-			</exclusions>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-		</dependency>
+			<!-- 项目基础框架模块  -->
+			<dependency>
+				<groupId>com.example</groupId>
+				<artifactId>common-framework</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
 
-		<!-- spring-cloud组件 -->
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-sentinel</artifactId>
-		</dependency>
-
-		<!-- dubbo & nacos -->
-		<dependency>
-			<groupId>org.apache.dubbo</groupId>
-			<artifactId>dubbo-spring-boot-starter</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.dubbo</groupId>
-			<artifactId>dubbo</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.dubbo</groupId>
-			<artifactId>dubbo-registry-nacos</artifactId>
-		</dependency>
-
-		<!-- sentinel + dubbo -->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-apache-dubbo-adapter</artifactId>
-		</dependency>
-		<!-- sentinel控制台 -->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-transport-simple-http</artifactId>
-		</dependency>
-		<!-- sentinel + nacos -->
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-datasource-nacos</artifactId>
-		</dependency>
-
-		<!-- 其它组件 -->
-		<!-- dubbo体系引入的依赖 -->
-		<dependency>
-			<groupId>org.apache.commons</groupId>
-			<artifactId>commons-lang3</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>mysql</groupId>
-			<artifactId>mysql-connector-java</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>druid-spring-boot-starter</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba</groupId>
-			<artifactId>fastjson</artifactId>
-		</dependency>
-
-	</dependencies>
+			<!-- 自身api模块 -->
+			<dependency>
+				<groupId>com.example</groupId>
+				<artifactId>user-server-api</artifactId>
+				<version>0.0.1-SNAPSHOT</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
 
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.1</version>
 				<configuration>
-					<excludes>
-						<exclude>
-							<groupId>org.springframework.boot</groupId>
-							<artifactId>spring-boot-configuration-processor</artifactId>
-						</exclude>
-					</excludes>
+					<source>${java.version}</source>
+					<target>${java.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>
+				<version>${maven-surefire-plugin.version}</version>
+				<configuration>
+					<!--默认关掉单元测试 -->
+					<skipTests>true</skipTests>
 				</configuration>
 			</plugin>
 		</plugins>

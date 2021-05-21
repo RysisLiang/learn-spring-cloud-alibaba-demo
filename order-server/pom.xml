@@ -5,31 +5,46 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>spring-cloud-alibaba-demo-dependencies</module>
-        <module>common</module>
-        <module>gateway-server</module>
-        <module>main-web-server</module>
-        <module>order-server</module>
-        <module>user-server</module>
+        <module>order-server-api</module>
+        <module>order-server-app</module>
     </modules>
 
     <parent>
-        <groupId>org.springframework.boot</groupId>
-        <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.3.2.RELEASE</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <groupId>com.example</groupId>
+        <artifactId>spring-cloud-alibaba-demo</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <groupId>com.example</groupId>
-    <artifactId>spring-cloud-alibaba-demo</artifactId>
+    <artifactId>order-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
+    <description>订单服务模块</description>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEcoding>UTF-8</project.reporting.outputEcoding>
-        <java.version>1.8</java.version>
-        <maven-surefire-plugin.version>2.22.2</maven-surefire-plugin.version>
-    </properties>
+    <dependencyManagement>
+        <dependencies>
+            <!-- 项目基础 pom 文件  -->
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>spring-cloud-alibaba-demo-dependencies</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+
+            <!-- 项目基础框架模块  -->
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>common-framework</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+
+            <!-- api模块 -->
+            <dependency>
+                <groupId>com.example</groupId>
+                <artifactId>order-server-api</artifactId>
+                <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
 
     <build>
         <plugins>

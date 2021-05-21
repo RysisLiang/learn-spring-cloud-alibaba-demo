@@ -1,6 +1,6 @@
 package com.example.main.controller;
 
-import com.example.common.entity.Account;
+import com.example.account.entity.Account;
 import com.example.main.service.TestService;
 import org.springframework.web.bind.annotation.*;
 

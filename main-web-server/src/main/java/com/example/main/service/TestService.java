@@ -1,7 +1,7 @@
 package com.example.main.service;
 
-import com.example.common.api.AccountService;
-import com.example.common.entity.Account;
+import com.example.account.entity.Account;
+import com.example.account.rpc.AccountService;
 import org.apache.dubbo.config.annotation.DubboReference;
 import org.springframework.stereotype.Service;
 
