@@ -1,6 +1,6 @@
 spring:
   application:
-    name: user-server
+    name: order-server
   cloud:
     nacos:
       # 配置中心配置
@@ -16,9 +16,6 @@ spring:
         # 共享配置列表
         shared-configs:
           - data-id: global.yaml
-            group: DEFAULT_GROUP
-            refresh: true
-          - data-id: mysql-global.yaml
             group: DEFAULT_GROUP
             refresh: true
     sentinel:

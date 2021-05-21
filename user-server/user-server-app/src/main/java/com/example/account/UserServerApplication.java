@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EntityScan(basePackages = "com.example.common.framework.entity") // jpa扫描entity
+@EntityScan(basePackages = "com.example.account.entity") // jpa扫描entity
 public class UserServerApplication {
 
     public static void main(String[] args) throws InterruptedException {

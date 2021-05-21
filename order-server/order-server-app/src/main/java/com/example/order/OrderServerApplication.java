@@ -8,7 +8,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@EntityScan(basePackages = "com.example.common.framework.entity") // jpa扫描entity
+@EntityScan(basePackages = "com.example.order.entity") // jpa扫描entity
 public class OrderServerApplication {
 
     public static void main(String[] args) throws InterruptedException {
