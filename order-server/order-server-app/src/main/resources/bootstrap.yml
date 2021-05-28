@@ -30,4 +30,7 @@ spring:
         port: 8821
         dashboard: localhost:8050
         clientIp: localhost
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
 

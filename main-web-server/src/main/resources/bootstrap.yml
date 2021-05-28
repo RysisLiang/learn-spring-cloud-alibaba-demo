@@ -25,3 +25,6 @@ spring:
       transport:
         port: 8619
         dashboard: localhost:8050
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group

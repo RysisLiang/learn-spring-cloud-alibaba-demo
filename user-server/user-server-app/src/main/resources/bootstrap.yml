@@ -38,4 +38,7 @@ spring:
 #            data-id: ${spring.application.name}-sentinel-rule
 #            data-type: json
 #            rule-type: flow
+    alibaba:
+      seata:
+        tx-service-group: my_test_tx_group
 

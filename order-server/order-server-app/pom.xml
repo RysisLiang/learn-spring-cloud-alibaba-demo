@@ -88,6 +88,12 @@
             <artifactId>sentinel-datasource-nacos</artifactId>
         </dependency>
 
+        <!-- 分布式一致性相关 -->
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-starter-alibaba-seata</artifactId>
+        </dependency>
+
         <!-- DB 相关 -->
         <dependency>
             <groupId>mysql</groupId>

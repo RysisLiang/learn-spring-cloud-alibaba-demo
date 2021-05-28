@@ -86,9 +86,27 @@ java -Dserver.port=8050 -Dcsp.sentinel.dashboard.server=localhost:8050 -jar sent
 首先修改配置文件，并初始化一些数据
 
 ```
-1. 将上面的config.txt文件复制到seata目录，nacos中的nacos-config.sh  nacos-config.py复制到seata的conf目录；
-2. 修改配置文件，包括模式、数据库的地址、注册中心的类型等；
-3. todo
+# 如果使用nacos 集中管理配置
+1. 从官方库中找到/script文件夹里面有相关你的配置说明其中config.txt文件复制到seata目录，nacos中的nacos-config.sh or nacos-config.py 复制到seata-server的conf目录；
+2. config.txt 修改其中需要调整的参数。尤其是`service.vgroupMapping.my_test_tx_group=default` 这个参数
+3. 执行初始化脚本：sh ${SEATAPATH}/script/config-center/nacos/nacos-config.sh -h localhost -p 8848 -g SEATA_GROUP -t namespace -u username -w password
+
+# 使用默认的本地配置文件
+1. 修改配置文件，file.conf包括模式、数据库的地址、registry.conf注册中心的类型等；
+
+# 启动服务，可以制动ip port
+启动seata服务：sh ./bin/seata-server.sh
+Options:
+	--host, -h
+	  The host to bind.
+	  Default: 0.0.0.0
+	--port, -p
+	  The port to listen.
+	  Default: 8091
+	--storeMode, -m
+	  log store mode : file、db
+	  Default: file
+	--help 
 ```
 
 ---

@@ -90,8 +90,10 @@ public class TestController {
     public Object purchase(@PathVariable("id") Long id, @RequestParam String commodityCode, @RequestParam Integer orderCount) {
         System.out.printf("%s - TestController.purchase:id=%d %n", LocalDateTime.now(), id);
         // 采购
-        businessService.purchase(id, commodityCode, orderCount);
-        return "ok";
+        boolean purchase = businessService.purchase(id, commodityCode, orderCount);
+        HashMap<String, Object> result = new HashMap<>();
+        result.put("result", purchase);
+        return result;
     }
 
 
