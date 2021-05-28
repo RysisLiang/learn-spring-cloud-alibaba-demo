@@ -83,7 +83,7 @@ java -Dserver.port=8050 -Dcsp.sentinel.dashboard.server=localhost:8050 -jar sent
 
 #### seata
 
-首先修改配置文件，并初始化一些数据
+服务端
 
 ```
 # 如果使用nacos 集中管理配置
@@ -94,7 +94,7 @@ java -Dserver.port=8050 -Dcsp.sentinel.dashboard.server=localhost:8050 -jar sent
 # 使用默认的本地配置文件
 1. 修改配置文件，file.conf包括模式、数据库的地址、registry.conf注册中心的类型等；
 
-# 启动服务，可以制动ip port
+# 启动TC服务，可以制动ip port
 启动seata服务：sh ./bin/seata-server.sh
 Options:
 	--host, -h
@@ -108,6 +108,13 @@ Options:
 	  Default: file
 	--help 
 ```
+
+客户端
+
+1. 引入依赖，要与服务端的版本统一；
+2. 把服务端的file.conf、registry.conf放到resource下（使用集中配置，或者统一配置yml则只挪配置内容即可）；
+3. 事务分组与指定的TC名称要一致；
+4. AT模式直接使用注解即可；
 
 ---
 
