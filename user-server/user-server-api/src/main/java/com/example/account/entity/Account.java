@@ -33,21 +33,27 @@ public class Account extends BaseModel implements Serializable {
     /**
      * 用户年龄
      */
-    private int age;
+    private Integer age;
     /**
      * 用户地址
      */
     private String address;
+    /**
+     * 账户余额
+     * - 单位是：分
+     */
+    private Integer balance;
 
     public Account() {
     }
 
-    public Account(String username, String password, String name, int age, String address) {
+    public Account(String username, String password, String name, Integer age, String address, Integer balance) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.age = age;
         this.address = address;
+        this.balance = balance;
     }
 
     @Override
@@ -58,6 +64,7 @@ public class Account extends BaseModel implements Serializable {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", address='" + address + '\'' +
+                ", balance=" + balance +
                 '}';
     }
 
@@ -65,8 +72,8 @@ public class Account extends BaseModel implements Serializable {
         return username;
     }
 
-    public void setUsername(String userName) {
-        this.username = userName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getPassword() {
@@ -85,11 +92,11 @@ public class Account extends BaseModel implements Serializable {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -99,5 +106,13 @@ public class Account extends BaseModel implements Serializable {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Integer getBalance() {
+        return balance;
+    }
+
+    public void setBalance(Integer balance) {
+        this.balance = balance;
     }
 }

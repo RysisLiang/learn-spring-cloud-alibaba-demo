@@ -54,4 +54,14 @@ public interface IAccountRPC {
     RPCResult<Account> findOneByUsernameAndPwd(@RequestParam("username") String username,
                                                @RequestParam("pwd") String pwd);
 
+    /**
+     * 根据指定id进行借出余额操作，并返回新的用户数据
+     *
+     * @param id 账户id
+     * @param money 金额
+     * @return
+     */
+    @PostMapping("/{id}")
+    RPCResult<Account> debitById(@PathVariable("id") Long id, @RequestParam("money") Integer money);
+
 }

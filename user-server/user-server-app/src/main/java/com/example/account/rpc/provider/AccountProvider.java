@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
+import javax.transaction.Transactional;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -86,5 +87,14 @@ public class AccountProvider implements IAccountRPC {
             return i;
         });
         return RPCResult.buildSuccess(optional1.orElse(null));
+    }
+
+    @Override
+    @Transactional
+    public RPCResult<Account> debitById(Long id, Integer money) {
+        System.out.printf("AccountProvider.debitById:id=%d, money=%d %n", id, money);
+        accountDao.debitById(id, money);
+        Optional<Account> optional = accountDao.findById(id);
+        return RPCResult.buildSuccess(optional.orElse(null));
     }
 }
