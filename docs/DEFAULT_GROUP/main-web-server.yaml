@@ -11,7 +11,7 @@ spring:
         ds1:
           nacos:
             server-addr: 127.0.0.1:8848
-            namespace: local-test
+            namespace: local-test-2
             group-id: sentinel:config
             data-id: ${spring.application.name}-sentinel-rule
             data-type: json

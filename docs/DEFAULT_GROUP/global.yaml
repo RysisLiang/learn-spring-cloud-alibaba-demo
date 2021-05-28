@@ -1,0 +1,52 @@
+# 全部微服务的发现注册配置
+spring:
+  cloud:
+    nacos:
+      # 服务发现配置
+      discovery:
+        # 设置服务发现服务端地址。端口不能省略
+        server-addr: 127.0.0.1:8848
+        # 服务发现的namespace，默认为 public
+        namespace: local-test-2
+        # 服务发现的group，默认为 DEFAULT_GROUP
+        group: DEFAULT_GROUP
+    sentinel:
+      transport:
+        # 控制台地址
+        dashboard: localhost:8050
+
+# 日志配置
+logging:
+  config: classpath:logback-spring.xml
+
+# feign
+feign:
+  client:
+    config:
+      default:
+        # connectTimeout: 2000 # 连接超时，优先级高于ribbon，但建议使用ribbon重试机制
+        # readTimeout: 5000 # 读取超时，优先级高于ribbon，但建议使用ribbon重试机制
+        loggerLevel: basic
+  httpclient:
+    enabled: true
+  compression:
+    request:
+      enabled: true # 开启请求压缩
+    response:
+      enabled: true # 开启响应压缩
+      mime-types: text/html,application/xml,application/json # 设置压缩的数据类型
+      min-request-size: 2048 # 设置触发压缩的大小下限
+  # 打开sentinel 对open-feign的支持
+  sentinel:
+    enabled: true
+
+# ribbon
+ribbon:
+  eager-load:
+    enabled: true
+  MaxAutoRetries: 0 # 同一台实例的最大自动重试次数，不包括首次。默认为1
+  MaxAutoRetriesNextServer: 0 # 要重试的下一个实例的最大数量，不包括第一次被调用的实例。默认为1
+  OkToRetryOnAllOperations: true # 是否所有的操作都重试，默认为true
+  ServerListRefreshInterval: 2000 # 从注册中心刷新服务器列表信息的时间间隔，默认为2000毫秒
+  ConnectTimeout: 2000 # 连接超时
+  ReadTimeout: 5000 # 读取超时
