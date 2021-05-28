@@ -8,7 +8,7 @@ spring:
         # 设置配置中心服务端地址。端口不能省略
         server-addr: 127.0.0.1:8848
         # 配置中心的namespace，默认为 public
-        namespace: local-test
+        namespace: local-test-2
         # 配置中心的group，默认为 DEFAULT_GROUP
         group: DEFAULT_GROUP
         # 指定配置文件的扩展名
