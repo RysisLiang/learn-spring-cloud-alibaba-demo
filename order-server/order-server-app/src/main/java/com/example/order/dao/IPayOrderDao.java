@@ -26,6 +26,6 @@ public interface IPayOrderDao extends JpaRepository<PayOrder, Long> {
      */
     @Modifying
     @Query("UPDATE PayOrder p SET p.payAmount = :payAmount WHERE p.id = :orderId")
-    int updateByAccountId(@Param("orderId") Integer orderId, @Param("payAmount") Integer payAmount);
+    int updateByAccountId(@Param("orderId") Long orderId, @Param("payAmount") Integer payAmount);
 
 }

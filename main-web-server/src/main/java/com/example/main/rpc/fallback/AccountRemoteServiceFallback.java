@@ -38,4 +38,9 @@ public class AccountRemoteServiceFallback implements AccountRemoteService {
     public RPCResult<Account> findOneByUsernameAndPwd(String username, String pwd) {
         return RPCResult.buildError("fallback");
     }
+
+    @Override
+    public RPCResult<Account> debitById(Long id, Integer money) {
+        return RPCResult.buildError("fallback");
+    }
 }

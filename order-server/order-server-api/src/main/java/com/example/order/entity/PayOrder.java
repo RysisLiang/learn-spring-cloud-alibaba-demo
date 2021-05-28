@@ -20,7 +20,7 @@ public class PayOrder extends BaseModel implements Serializable {
     /**
      * 账户id
      */
-    private Integer accountId;
+    private Long accountId;
     /**
      * 账户名称
      */
@@ -49,11 +49,11 @@ public class PayOrder extends BaseModel implements Serializable {
                 '}';
     }
 
-    public Integer getAccountId() {
+    public Long getAccountId() {
         return accountId;
     }
 
-    public void setAccountId(Integer accountId) {
+    public void setAccountId(Long accountId) {
         this.accountId = accountId;
     }
 

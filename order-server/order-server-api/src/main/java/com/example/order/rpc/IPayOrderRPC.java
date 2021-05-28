@@ -43,8 +43,7 @@ public interface IPayOrderRPC {
      * @return
      */
     @PutMapping("/{id}")
-    RPCResult<Integer> updateByAccountId(@PathVariable("id") Integer id,
-                                         @RequestParam("payAmount") Integer payAmount);
+    RPCResult<Integer> updateByAccountId(@PathVariable("id") Long id, @RequestParam("payAmount") Integer payAmount);
 
     /**
      * 获取全部订单

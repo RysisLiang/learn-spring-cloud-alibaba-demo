@@ -40,7 +40,7 @@ public class PayOrderProvider implements IPayOrderRPC {
     }
 
     @Override
-    public RPCResult<Integer> updateByAccountId(Integer id, Integer payAmount) {
+    public RPCResult<Integer> updateByAccountId(Long id, Integer payAmount) {
         System.out.println(LocalDateTime.now() + " - 1.0.0 PayOrderProvider.save:" + id + "-" + payAmount);
         Integer data = payOrderDao.updateByAccountId(id, payAmount);
         return RPCResult.buildSuccess(data);
