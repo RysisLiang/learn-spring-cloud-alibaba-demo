@@ -1,35 +1,38 @@
 package com.example.main.service;
 
 import com.example.account.entity.Account;
-import com.example.account.rpc.AccountService;
-import org.apache.dubbo.config.annotation.DubboReference;
+import com.example.account.rpc.IAccountRPC;
+import com.example.common.framework.rpc.RPCResult;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.Resource;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
 /**
- * TestService
+ * AccountService
+ * 账户业务类
  *
  * @author kunda-liang
  * @version 1.00
  * @date 2021/2/5 15:14
  */
 @Service
-public class TestService {
+public class AccountService {
 
-    @DubboReference(loadbalance = "roundrobin", version = "1.0.0")
-    private AccountService accountService;
+    @Resource
+    private IAccountRPC accountRPC;
 
     /**
      * 注册
      *
-     * @param account
+     * @param account 账户信息
      * @return
      */
     public Optional<Account> signUp(Account account) {
-        Account save = accountService.save(account);
-        return Optional.ofNullable(save);
+        RPCResult<Account> rpc = accountRPC.save(account);
+        return Optional.ofNullable(rpc.getResult());
     }
 
     /**
@@ -40,8 +43,8 @@ public class TestService {
      * @return
      */
     public Optional<Account> signIn(String userName, String password) {
-        Account account = accountService.findOneByUsernameAndPwd(userName, password);
-        return Optional.ofNullable(account);
+        RPCResult<Account> rpc = accountRPC.findOneByUsernameAndPwd(userName, password);
+        return Optional.ofNullable(rpc.getResult());
     }
 
     /**
@@ -50,13 +53,13 @@ public class TestService {
      * @return
      */
     public List<Account> findALl() {
-        List<Account> all = null;
         try {
-            all = accountService.getAll();
+            RPCResult<List<Account>> rpc = accountRPC.getAll();
+            return rpc.getResult();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return all;
+        return Collections.emptyList();
     }
 
     /**
@@ -66,7 +69,7 @@ public class TestService {
      * @return
      */
     public Optional<Account> findById(Long id) {
-        Account account = accountService.findOneById(id);
-        return Optional.ofNullable(account);
+        RPCResult<Account> rpc = accountRPC.findOneById(id);
+        return Optional.ofNullable(rpc.getResult());
     }
 }

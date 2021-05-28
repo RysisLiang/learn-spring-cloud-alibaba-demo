@@ -1,7 +1,7 @@
 package com.example.main.controller;
 
 import com.example.account.entity.Account;
-import com.example.main.service.TestService;
+import com.example.main.service.AccountService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -21,7 +21,7 @@ import java.util.Random;
 public class TestController {
 
     @Resource
-    private TestService testService;
+    private AccountService accountService;
 
     @GetMapping(value = "/status")
     public Object status() {
@@ -47,7 +47,7 @@ public class TestController {
         account.setAge(r);
         account.setAddress("测试数据地址" + r);
         account.setCreateTime(LocalDateTime.now());
-        return testService.signUp(account);
+        return accountService.signUp(account);
     }
 
     /**
@@ -60,19 +60,19 @@ public class TestController {
     @GetMapping(value = "/sign-in")
     public Object signIn(String userName, String password) {
         System.out.printf("%s - LoginController.signIn:userName=%s, password=%s %n", LocalDateTime.now(), userName, password);
-        return testService.signIn(userName, password);
+        return accountService.signIn(userName, password);
     }
 
     @GetMapping(value = "/findAll")
     public Object findAll() {
         System.out.printf("%s - LoginController.findAll %n", LocalDateTime.now());
-        return testService.findALl();
+        return accountService.findALl();
     }
 
     @GetMapping(value = "/find/{id}")
     public Object findById(@PathVariable("id") Long id) {
         System.out.printf("%s - LoginController.findById:id=%d %n", LocalDateTime.now(), id);
-        return testService.findById(id);
+        return accountService.findById(id);
     }
 
 
