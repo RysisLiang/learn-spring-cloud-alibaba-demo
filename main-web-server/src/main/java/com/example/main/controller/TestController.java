@@ -2,6 +2,7 @@ package com.example.main.controller;
 
 import com.example.account.entity.Account;
 import com.example.main.service.AccountService;
+import com.example.main.service.BusinessService;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,6 +23,8 @@ public class TestController {
 
     @Resource
     private AccountService accountService;
+    @Resource
+    private BusinessService businessService;
 
     @GetMapping(value = "/status")
     public Object status() {
@@ -38,7 +41,7 @@ public class TestController {
      */
     @PostMapping(value = "/sign-up")
     public Object signUp(Long id) {
-        System.out.println(LocalDateTime.now() + " - LoginController.signUp:id=" + id);
+        System.out.println(LocalDateTime.now() + " - TestController.signUp:id=" + id);
         int r = new Random().nextInt(20);
         Account account = new Account();
         account.setUsername("hahaR" + r);
@@ -59,20 +62,36 @@ public class TestController {
      */
     @GetMapping(value = "/sign-in")
     public Object signIn(String userName, String password) {
-        System.out.printf("%s - LoginController.signIn:userName=%s, password=%s %n", LocalDateTime.now(), userName, password);
+        System.out.printf("%s - TestController.signIn:userName=%s, password=%s %n", LocalDateTime.now(), userName, password);
         return accountService.signIn(userName, password);
     }
 
     @GetMapping(value = "/findAll")
     public Object findAll() {
-        System.out.printf("%s - LoginController.findAll %n", LocalDateTime.now());
+        System.out.printf("%s - TestController.findAll %n", LocalDateTime.now());
         return accountService.findALl();
     }
 
     @GetMapping(value = "/find/{id}")
     public Object findById(@PathVariable("id") Long id) {
-        System.out.printf("%s - LoginController.findById:id=%d %n", LocalDateTime.now(), id);
+        System.out.printf("%s - TestController.findById:id=%d %n", LocalDateTime.now(), id);
         return accountService.findById(id);
+    }
+
+    /**
+     * 采购测试
+     *
+     * @param id
+     * @param commodityCode
+     * @param orderCount
+     * @return
+     */
+    @GetMapping(value = "/purchase/{id}")
+    public Object purchase(@PathVariable("id") Long id, @RequestParam String commodityCode, @RequestParam Integer orderCount) {
+        System.out.printf("%s - TestController.purchase:id=%d %n", LocalDateTime.now(), id);
+        // 采购
+        businessService.purchase(id, commodityCode, orderCount);
+        return "ok";
     }
 
 
