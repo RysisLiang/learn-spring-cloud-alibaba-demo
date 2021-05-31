@@ -2,21 +2,24 @@
 
 ## 介绍
 
-该项目为 Spring-Cloud 与 Spring-Cloud-Alibaba 技术整合的示例。
+#### 该项目为 Spring-Cloud 与 Spring-Cloud-Alibaba 技术整合的示例。
 
-组件
+其中主要有两个分支：
+- dev-openfeign/master
+- dev-dubbo
+
+主要是验证两种技术，在分布式应用中的使用、以及与其它组件的功能整合情况。
+
+#### 组件
 - Spring Cloud Gateway 网关。作为一个API架构，用来保护、增强和控制对于API服务的访问。API网关是一个处于应用程序或服务（提供 REST API 接口服务）之前的系统，用来管理授权、访问控制和流量限制等，这样 REST API接口服务就被 API网关保护起来，对所有的调用者透明。
 - Spring Cloud Alibaba Nacos 动态服务发现、配置管理和服务管理平台。快速构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。
 - Spring Cloud Alibaba Sentinel 流量控制。是面向分布式服务架构的流量控制组件，主要以流量为切入点，从限流、流量整形、熔断降级、系统负载保护、热点防护等多个维度来帮助开发者保障微服务的稳定性。
 - Seata 分布式一致性中间件。
-- todo
+- SkyWalking todo
 
 选型说明：
-1. 使用 Spring-Cloud-Alibaba 的原因。
-    1. Spring-Cloud 的部分技术依赖 Netflix 的开源项目，且部分项目已经停止更新进入仅维护阶段。
+1. 使用 Spring-Cloud-Alibaba 的原因。Spring-Cloud 的部分技术依赖 Netflix 的开源项目，且部分项目已经停止更新进入仅维护阶段。
 所以使用 Spring-Cloud-Alibaba 的部分组件来进行替换。
-3. 使用 Sentinel 的原因。
-    1. Hystrix 不更新进入维护阶段。所以需要准备替代品，而 Sentinel 能实现 Hystrix 的所有功能；
 
 ---
 
@@ -48,6 +51,8 @@ Spring Cloud Alibaba Version|Sentinel Version|Nacos Version|RocketMQ Version|Dub
 
 #### Nacos
 
+服务注册与发现、配置集中管理
+
 [官网文档](https://nacos.io/zh-cn/docs/what-is-nacos.html)
 
 ```
@@ -66,6 +71,8 @@ http://127.0.0.1:8848/nacos
 
 #### Sentinel
 
+流量控制中间件
+
 [官方介绍-包含了主流框架的适配](https://github.com/alibaba/Sentinel/wiki/%E4%BB%8B%E7%BB%8D)
 
 [Spring cloud Alibaba的整合说明](https://github.com/alibaba/spring-cloud-alibaba/wiki/Sentinel)
@@ -81,7 +88,9 @@ java -Dserver.port=8050 -Dcsp.sentinel.dashboard.server=localhost:8050 -jar sent
 
 默认账户：sentinel/sentinel
 
-#### seata
+#### Seata
+
+分布式一致性中间件
 
 服务端
 
@@ -116,12 +125,17 @@ Options:
 3. 事务分组与指定的TC名称要一致；
 4. AT模式直接使用注解即可；
 
+
+#### SkyWalking
+
+todo
+
 ---
 
 ## 模块介绍
 
-- common
-- gateway-server
-- main-web-server
-- user-server
-- order-server
+- common 基础工具模块
+- gateway-server 网关服务模块
+- main-web-server 核心web服务模块
+- user-server 用户服务模块
+- order-server 订单服务模块
