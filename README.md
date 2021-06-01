@@ -15,7 +15,7 @@
 - Spring Cloud Alibaba Nacos 动态服务发现、配置管理和服务管理平台。快速构建以“服务”为中心的现代应用架构 (例如微服务范式、云原生范式) 的服务基础设施。
 - Spring Cloud Alibaba Sentinel 流量控制。是面向分布式服务架构的流量控制组件，主要以流量为切入点，从限流、流量整形、熔断降级、系统负载保护、热点防护等多个维度来帮助开发者保障微服务的稳定性。
 - Seata 分布式一致性中间件。
-- SkyWalking todo
+- SkyWalking 链路监控。
 
 选型说明：
 1. 使用 Spring-Cloud-Alibaba 的原因。Spring-Cloud 的部分技术依赖 Netflix 的开源项目，且部分项目已经停止更新进入仅维护阶段。
@@ -128,7 +128,75 @@ Options:
 
 #### SkyWalking
 
-todo
+分布式系统的应用程序性能监视工具，专为微服务、云原生架构和基于容器（Docker、K8s、Mesos）架构而设计。提供分布式追踪、服务网格遥测分析、度量聚合和可视化一体化解决方案。
+
+[官方文档-英文](https://github.com/apache/skywalking/tree/master/docs)
+
+[官方文档-社区翻译中文](https://github.com/SkyAPM/document-cn-translation-of-skywalking)
+
+功能：
+- 多种监控手段。可以通过语言探针和 service mesh 获得监控是数据。
+- 多个语言自动探针。包括 Java，.NET Core 和 Node.JS。
+- 轻量高效。无需大数据平台，和大量的服务器资源。
+- 模块化。UI、存储、集群管理都有多种机制可选。
+- 支持告警。
+- 优秀的可视化解决方案。
+
+组成：
+- SkyWalking OAP服务；
+- SkyWalking UI；
+- Agent探针。目前支持 SkyWalking、Zikpin、Jaeger 等提供的 Tracing 数据信息；
+
+##### 环境配置
+
+agent支持多种数据存储方式。在官网下载需要的版本，并且解压后。修改配置文件指定需要数据持久化的容器。主要分为 ‘es6’ 和 ‘其它’ 两种软件包类型。
+
+```
+# 配置文件的修改
+vim config/application.yml
+# storage.selector 是指定的数据持久化容器的类型
+# 并且修改对应的容器配置
+
+# 启动agent服务
+bin/oapService.sh
+
+# 启动UI服务
+# 修改 webapp/webapp.yml 中的端口号
+bin/webappService.sh
+
+# 查看日志
+logs/skywalking-oap-server.log
+logs/webapp.log
+```
+
+##### 设置探针
+
+shell配置
+```
+# 1. 拷贝 apache-skywalking-apm-bin/agent到项目所在的服务器上
+# 2. 修改 SkyWalking Agent 配置
+export SW_AGENT_NAME=demo-application # 配置 Agent 名字。一般来说，我们直接使用 Spring Boot 项目的 `spring.application.name` 。
+export SW_AGENT_COLLECTOR_BACKEND_SERVICES=127.0.0.1:11800 # 配置 Collector 地址。
+export SW_AGENT_SPAN_LIMIT=2000 # 配置链路的最大 Span 数量。一般情况下，不需要配置，默认为 300 。主要考虑，有些新上 SkyWalking Agent 的项目，代码可能比较糟糕。
+export JAVA_AGENT=-javaagent:/xxx/apache-skywalking-apm-bin-es7/agent/skywalking-agent.jar # SkyWalking Agent jar 地址。
+
+# 启动jar
+java -jar $JAVA_AGENT -jar lab-39-demo-2.2.2.RELEASE.jar
+```
+
+IDEA配置
+```
+VM options: `-javaagent:/xxx/apache-skywalking-apm-bin-es7/agent/skywalking-agent.jar`
+Environment variables: `SW_AGENT_NAME=demo-application;SW_AGENT_COLLECTOR_BACKEND_SERVICES=127.0.0.1:11800`
+```
+
+##### 集群
+
+1. 搭建一个 Elasticsearch 服务的集群。
+2. 搭建一个注册中心的集群。目前 SkyWalking 支持 Zookeeper、Kubernetes、Consul、Nacos 作为注册中心。
+3. 搭建一个 SkyWalking OAP 服务的集群，同时参考《SkyWalking 文档 —— 集群管理》，将 SkyWalking OAP 服务注册到注册中心上。
+4. 启动一个 Spring Boot 应用，并配置 SkyWalking Agent。另外，在设置 SkyWaling Agent 的 SW_AGENT_COLLECTOR_BACKEND_SERVICES 地址时，需要设置多个 SkyWalking OAP 服务的地址数组。
+5. 搭建一个 SkyWalking UI 服务的集群，同时使用 Nginx 进行负载均衡。另外，在设置 SkyWalking UI 的 collector.ribbon.listOfServers 地址时，也需要设置多个 SkyWalking OAP 服务的地址数组。
 
 ---
 
