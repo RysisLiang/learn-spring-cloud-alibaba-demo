@@ -29,7 +29,7 @@ public class PayOrderProvider implements IPayOrderRPC {
     public RPCResult<PayOrder> save(PayOrder payOrder) {
         System.out.println(LocalDateTime.now() + " - 1.0.0 PayOrderProvider.save:" + payOrder);
         // 测试分布式的回滚
-        int i = 1 / 0;
+//        int i = 1 / 0;
         PayOrder data = payOrderDao.save(payOrder);
         return RPCResult.buildSuccess(data);
     }
