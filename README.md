@@ -181,7 +181,7 @@ export SW_AGENT_SPAN_LIMIT=2000 # 配置链路的最大 Span 数量。一般情�
 export JAVA_AGENT=-javaagent:/xxx/apache-skywalking-apm-bin-es7/agent/skywalking-agent.jar # SkyWalking Agent jar 地址。
 
 # 启动jar
-java -jar $JAVA_AGENT -jar lab-39-demo-2.2.2.RELEASE.jar
+java -jar $JAVA_AGENT lab-39-demo-2.2.2.RELEASE.jar
 ```
 
 IDEA配置
